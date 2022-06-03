@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+    font-family: barlow;
+    font-size: 1.2rem;
+}
+
+.login {
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    height: 100vh;
+    width: 33vw;
+    float: right;
+    background-image: url(../assets/imgs/login_img.jpg);
+    background-position-y: -310px;
+}
+
+.formulario {
+    height: 40vh;
+    width: 50vw;
+    margin-top: 200px;
+    margin-left: 10%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formulario input{
+    height: 20px;
+    width: 23vw;
+    padding: 20px;
+    border-bottom: 2px solid black;
+}
+
+.formulario button{
+    height: 6vh;
+    border: none;
+    border-radius: 15px;
+    margin: 20px;
+    margin-left: 15px;
+    cursor: pointer;
+    background-color: #120a8f;
+    color: white;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 2px solid #120a8f;
+}
+
+button:hover{
+    transition: .5s;
+}
+
+a {
+    text-decoration: underline;
+    color: black;
+}
+
+a:hover {
+    font-size:1.2em;
+}
+
+.letras_erro {
+    margin-top: 20px;
+    color: red;
+}

@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: barlow;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+  display: flex;
+}
+
+.header {
+  height: 8vh;
+  width: 100vw;
+  background-color: white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  border-bottom: 3px solid #008000;
+}
+
+.header .container {
+  justify-content: space-between;
+}
+
+.header a {
+  text-decoration: none;
+  color: #120a8f;
+  padding: 1vw;
+}
+
+.nome_site{
+  color: #120a8f;
+  width: fit-content;
+  font-size: 2rem;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.aqui {
+  text-decoration: none;
+  position: relative;
+}
+
+.aqui:hover{
+  text-decoration:underline;
+  transition: 1s;
+}
+
+.navbar {
+  width: 100vw;
+  height: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  font-size: 1.1rem;
+  position: fixed;
+  margin-left: 18%;
+}
+
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+:target {
+scroll-margin-top: .8em;
+}
+
+.swiper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.swiper.mySwiper{
+  height: 80vh;
+}
+
+.swiper-slide {
+  height: 400px;
+  text-align: center;
+  font-size: 1.1rem;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 85vw;
+  height: 80vh;
+  object-fit: cover;
+}
+
+.banner {
+  height: fit-content;
+  padding: 40px 0;
+  color: white;
+  background-image: url(".././assets/imgs/ucl.jpg");
+  background-size: cover;
+
+}
+
+.banner .container {
+  height: 85vh;
+  font-size: 2.2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner p {
+  width: 50vw;
+  margin: 0;
+  padding: 0;
+  font-size: 2.2rem;
+}
+
+.curio_fut {
+  background-color: white;
+  display: flex;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.curio_fut .container{
+  justify-content: start;
+}
+
+.curio_fut p {
+  text-align: start;
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
