@@ -4,16 +4,14 @@
   box-sizing: border-box;
   border: none;
   font-family: barlow;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 
 .banner .container .card {
-  background-color: #e5e5e5;
   height: fit-content;
   width: 800px;
   display: flex;
   flex-direction: column;
-  color: palevioletred;
   align-items: center;
   border-radius: 4px;
 }
@@ -57,20 +55,28 @@
   font-size: 20px;
 }
 
-.formulario .tipo_campo {
-  font-size: 20px;
-  font-weight: 600 !important;
-}
-
 .formulario {
   display: flex;
   flex-direction: column;
+  margin-top: 20%;
 }
 
 .formulario form{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.formulario input{
+  height: 20px;
+  width: 23vw;
+  padding: 20px;
+  border-bottom: 2px solid black;
+}
+
+input:focus {
+  outline: none;
+  border-bottom: 2px solid #120a8f;
 }
 
 .btn{
@@ -85,19 +91,6 @@
   text-align: center;
 }
 
-
-input {
-  height: 20px;
-    width: 20vw;
-    padding: 20px;
-    border-bottom: 2px solid black;
-}
-
-input:focus {
-  outline: none;
-  border-bottom: 2px solid #120a8f;
-}
-
 .loading-div {
   width: 50px;
   margin: auto;
@@ -107,4 +100,10 @@ input:focus {
 .loading-div img {
   height: 50px;
   width: 50px;
+}
+
+select {
+  display: flex;
+  align-items: center;
+  text-align: center;
 }

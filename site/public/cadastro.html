@@ -33,20 +33,20 @@
                 <div class="formulario">
 
                     <form>
-                    <label class="tipo_campo">Nome:</label>
-                    <input id="nome_input" type="text" placeholder="Digite seu nome">
+                    <label>Nome:</label>
+                    <input id="nome_input" type="text" placeholder="Digite seu nome" required> <br>
 
-                    <label class="tipo_campo">E-mail:</label>
-                    <input id="email_input" type="text" placeholder="Digite seu email">
+                    <label>E-mail:</label>
+                    <input id="email_input" type="text" placeholder="Digite seu email" required> <br>
 
-                    <label class="tipo_campo">Senha:</label>
-                    <input id="senha_input" type="password" placeholder="Digite sua senha">
+                    <label>Senha:</label>
+                    <input id="senha_input" type="password" placeholder="Digite sua senha" required> <br>
 
-                    <label class="tipo_campo">Confirmar senha:</label>
-                    <input id="confirmacao_senha_input" type="password" placeholder="Confirme sua senha">
+                    <label>Confirmar senha:</label>
+                    <input id="confirmacao_senha_input" type="password" placeholder="Confirme sua senha" required> <br>
                     
-                    <label class="tipo_campo">Jogador preferido:</label> <br>
-                    <select id="select_jogador">
+                    <label>Jogador preferido:</label> <br>
+                    <select id="select_jogador" required>
                         <option value=""></option>
                         <option value="j1">Neymar JR</option>
                         <option value="j2">Kylian Mbappe</option>
@@ -60,8 +60,8 @@
                         <option value="j10">Erling Haaland</option>
                     </select> <br>
 
-                    <label class="tipo_campo">Clube preferido:</label> <br>
-                    <select id="">
+                    <label>Clube preferido:</label> <br>
+                    <select id="select_clube" required>
                         <option value=""></option>
                         <option value="c1">Real Madrid</option>
                         <option value="c2">Manchester City</option>
@@ -80,7 +80,7 @@
 
                 </div>
                 <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                    <img src="./assets/gif.gif" id="loading-gif">
                 </div>
 
                 <div id="div_erros_login">
@@ -104,8 +104,12 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
+        var jogadoresVar = select_jogador.value;
+        var clubesVar = select_clubes;
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" 
+        || jogadoresVar == "" || clubesVar == "") {
+
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
@@ -127,7 +131,9 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                jogadoresServer: jogadoresVar,
+                clubesServer: clubesVar
             })
         }).then(function (resposta) {
 
