@@ -18,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizacaoPeriodica()">
+<body onload="validarSessao(), grafico_jogador(), grafico_clube()">
 
     <div class="janela">
 
@@ -118,101 +118,53 @@
 
 <script>
 
-    function atualizacaoPeriodica() {
-        obterdados(1);
-        obterdados(2);
-        obterdados(3);
-        obterdados(4);
+var nome = "";
+var nome2 = "";
+var voto = 0;
+var voto2 = 0;
+var nome_clube = "";
+var nome_clube2 = "";
+var voto_clube = 0;
+var voto_clube2 = 0;
 
-        function sendData() {
-			var http = new XMLHttpRequest();
-			http.open('POST', 'http://localhost:3000/api/sendData', false);
-			http.send(null);
-		}
-
-        setInterval(() => {
-			sendData();
-		}, 2000);
-        setTimeout(atualizacaoPeriodica, 5000);
-    }
-
-    function obterdados(idAquario) {
-        fetch(`/medidas/tempo-real/${idAquario}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            temperatura: resposta[0].temperatura,
-                        }
-
-                        alertar(resposta[0].temperatura, idAquario);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
+function grafico_jogador() {
+        fetch("/usuarios/grafico_jogador").then(function (res1) {
+            if (res1.ok) {
+                console.log(res1)
+                res1.json().then(function (res1) {
+                    console.log("Dados recebidos: ", JSON.stringify(res1)) 
+                    nome = res1[0].nome
+                    nome2 = res1[1].nome
+                    voto = res1[0].voto
+                    voto2 = res1[1].voto
                 }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-
+                );
+            } else {
+                throw ('Houve um erro ao pegar info!');
+            }
+        }).catch(function (res1) {
+            console.error(res1);
+        });
     }
 
-    function alertar(temperatura, idAquario) {
-        var limites = {
-            muito_quente: 23,
-            quente: 22,
-            ideal: 20,
-            frio: 10,
-            muito_frio: 5
-        };
-
-        var classe_temperatura = 'cor-alerta';
-
-        if (temperatura >= limites.muito_quente) {
-            classe_temperatura = 'cor-alerta perigo-quente';
-            console.log("caiu no 1")
-        }
-        else if (temperatura < limites.muito_quente && temperatura >= limites.quente) {
-            classe_temperatura = 'cor-alerta alerta-quente';
-            console.log("caiu no 2")
-        }
-        else if (temperatura < limites.quente && temperatura > limites.frio) {
-            classe_temperatura = 'cor-alerta ideal';
-            console.log("caiu no 3")
-        }
-        else if (temperatura <= limites.frio && temperatura > limites.muito_frio) {
-            classe_temperatura = 'cor-alerta alerta-frio';
-            console.log("caiu no 4")
-        }
-        else if (temperatura < limites.min_temperatura) {
-            classe_temperatura = 'cor-alerta perigo-frio';
-            console.log("caiu no 5")
-        }
-
-        var card;
-
-        if (idAquario == 1) {
-            temp_aquario_1.innerHTML = temperatura + "°C";
-            card = card_1
-        } else if (idAquario == 2) {
-            temp_aquario_2.innerHTML = temperatura + "°C";
-            card = card_2
-        } else if (idAquario == 3) {
-            temp_aquario_3.innerHTML = temperatura + "°C";
-            card = card_3
-        } else if (idAquario == 4) {
-            temp_aquario_4.innerHTML = temperatura + "°C";
-            card = card_4
-        }
-
-        // alterando
-        card.className = classe_temperatura;
-
+    function grafico_clube() {
+        fetch("/usuarios/grafico_clube").then(function (res1) {
+            if (res1.ok) {
+                console.log(res1)
+                res1.json().then(function (res1) {
+                    console.log("Dados recebidos: ", JSON.stringify(res1)) 
+                    nome_clube = res1[0].nome_clube
+                    nome_clube2 = res1[1].nome_clube
+                    voto_clube = res1[0].voto_clube
+                    voto_clube2 = res1[1].voto_clube
+                }
+                );
+            } else {
+                throw ('Houve um erro ao pegar info!');
+            }
+        }).catch(function (res1) {
+            console.error(res1);
+        });
     }
 
 </script>

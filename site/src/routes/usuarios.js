@@ -20,4 +20,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.entrar(req, res);
 });
 
+router.get("/grafico_jogador", function (req, res) {
+    usuarioController.grafico_jogador(req, res);
+});
+
+router.get("/grafico_clube", function (req, res) {
+    usuarioController.grafico_clube(req, res);
+});
+
 module.exports = router;

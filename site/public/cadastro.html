@@ -48,31 +48,31 @@
                     <label>Jogador preferido:</label> <br>
                     <select id="select_jogador" required>
                         <option value=""></option>
-                        <option value="j1">Neymar JR</option>
-                        <option value="j2">Kylian Mbappe</option>
-                        <option value="j3">Messi</option>
-                        <option value="j4">Cristiano Ronaldo</option>
-                        <option value="j5">Vini JR</option>
-                        <option value="j6">Karim Benzema</option>
-                        <option value="j7">Robert Lewandowski</option>
-                        <option value="j8">Mohamed Salah</option>
-                        <option value="j9">Sadio Mané</option>
-                        <option value="j10">Erling Haaland</option>
+                        <option value="1">Neymar JR</option>
+                        <option value="2">Kylian Mbappe</option>
+                        <option value="3">Lionel Messi</option>
+                        <option value="4">Cristiano Ronaldo</option>
+                        <option value="5">Vini JR</option>
+                        <option value="6">Karim Benzema</option>
+                        <option value="7">Robert Lewandowski</option>
+                        <option value="8">Mohamed Salah</option>
+                        <option value="9">Sadio Mané</option>
+                        <option value="10">Erling Haaland</option>
                     </select> <br>
 
                     <label>Clube preferido:</label> <br>
                     <select id="select_clube" required>
                         <option value=""></option>
-                        <option value="c1">Real Madrid</option>
-                        <option value="c2">Manchester City</option>
-                        <option value="c3">Manchester United</option>
-                        <option value="c4">Chelsea</option>
-                        <option value="c5">Bayern de Munique</option>
-                        <option value="c6">Liverpool</option>
-                        <option value="c7">Barcelona</option>
-                        <option value="c8">Paris Saint-Germain</option>
-                        <option value="c9">Atlético de Madrid</option>
-                        <option value="c10">Juventus</option>
+                        <option value="1">Real Madrid</option>
+                        <option value="2">Manchester City</option>
+                        <option value="3">Manchester United</option>
+                        <option value="4">Chelsea</option>
+                        <option value="5">Bayern de Munique</option>
+                        <option value="6">Liverpool</option>
+                        <option value="7">Barcelona</option>
+                        <option value="8">Paris Saint-Germain</option>
+                        <option value="9">Atlético de Madrid</option>
+                        <option value="10">Juventus</option>
                     </select>
 
                     </form>
@@ -104,8 +104,8 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var confirmacaoSenhaVar = confirmacao_senha_input.value;
-        var jogadoresVar = select_jogador.value;
-        var clubesVar = select_clubes;
+        var jogadoresVar = Number(select_jogador.value);
+        var clubesVar = Number(select_clube.value);
 
         if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" 
         || jogadoresVar == "" || clubesVar == "") {
