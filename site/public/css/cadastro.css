@@ -58,7 +58,7 @@
 .formulario {
   display: flex;
   flex-direction: column;
-  margin-top: 20%;
+  margin-top: 5%;
 }
 
 .formulario form{
@@ -69,7 +69,7 @@
 
 .formulario input{
   height: 20px;
-  width: 23vw;
+  width: 28vw;
   padding: 20px;
   border-bottom: 2px solid black;
 }
@@ -106,4 +106,11 @@ select {
   display: flex;
   align-items: center;
   text-align: center;
+  border: 1px solid black;
+}
+
+img {
+  height: 125vh;
+  width: 38vw;
+  float: right;
 }
