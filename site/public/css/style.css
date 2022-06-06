@@ -36,7 +36,7 @@ body {
 .nome_site{
   color: #120a8f;
   width: fit-content;
-  font-size: 2rem;
+  font-size: 1.3rem;
   display: flex;
   justify-content: left;
   align-items: center;
