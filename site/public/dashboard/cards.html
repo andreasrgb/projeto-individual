@@ -118,14 +118,56 @@
 
 <script>
 
+// variáveis dos jogadores
+
+var lista_nome_jogador = [];
+var lista_voto_jogador = [];
+
 var nome = "";
 var nome2 = "";
+var nome3 = "";
+var nome4 = "";
+var nome5 = "";
+var nome6 = "";
+var nome7 = "";
+var nome8 = "";
+var nome9 = "";
+var nome10 = "";
 var voto = 0;
 var voto2 = 0;
+var voto3 = 0;
+var voto4 = 0;
+var voto5 = 0;
+var voto6 = 0;
+var voto7 = 0;
+var voto8 = 0;
+var voto9 = 0;
+var voto10 = 0;
+
+// variáveis dos clubes
+var lista_nome_clube = [];
+var lista_voto_clube = [];
+
 var nome_clube = "";
 var nome_clube2 = "";
+var nome_clube3 = "";
+var nome_clube4 = "";
+var nome_clube5 = "";
+var nome_clube6 = "";
+var nome_clube7 = "";
+var nome_clube8 = "";
+var nome_clube9 = "";
+var nome_clube10 = "";
 var voto_clube = 0;
 var voto_clube2 = 0;
+var voto_clube3 = 0;
+var voto_clube4 = 0;
+var voto_clube5 = 0;
+var voto_clube6 = 0;
+var voto_clube7 = 0;
+var voto_clube8 = 0;
+var voto_clube9 = 0;
+var voto_clube10 = 0;
 
 function grafico_jogador() {
         fetch("/usuarios/grafico_jogador").then(function (res1) {
@@ -134,9 +176,25 @@ function grafico_jogador() {
                 res1.json().then(function (res1) {
                     console.log("Dados recebidos: ", JSON.stringify(res1)) 
                     nome = res1[0].nome
-                    nome2 = res1[1].nome
+                    nome = res1[1].nome
+                    nome = res1[2].nome
+                    nome = res1[3].nome
+                    nome = res1[4].nome
+                    nome = res1[5].nome
+                    nome = res1[6].nome
+                    nome = res1[7].nome
+                    nome = res1[8].nome
+                    nome = res1[9].nome
                     voto = res1[0].voto
                     voto2 = res1[1].voto
+                    voto3 = res1[2].voto
+                    voto4 = res1[3].voto
+                    voto5 = res1[4].voto
+                    voto6 = res1[5].voto
+                    voto7 = res1[6].voto
+                    voto8 = res1[7].voto
+                    voto9 = res1[8].voto
+                    voto10 = res1[9].voto
                 }
                 );
             } else {
@@ -153,10 +211,26 @@ function grafico_jogador() {
                 console.log(res1)
                 res1.json().then(function (res1) {
                     console.log("Dados recebidos: ", JSON.stringify(res1)) 
-                    nome_clube = res1[0].nome_clube
-                    nome_clube2 = res1[1].nome_clube
-                    voto_clube = res1[0].voto_clube
-                    voto_clube2 = res1[1].voto_clube
+                    nome_clube = res1[0].nome
+                    nome_clube2 = res1[1].nome
+                    nome_clube3 = res1[2].nome
+                    nome_clube4 = res1[3].nome
+                    nome_clube5 = res1[4].nome
+                    nome_clube6 = res1[5].nome
+                    nome_clube7 = res1[6].nome
+                    nome_clube8 = res1[7].nome
+                    nome_clube9 = res1[8].nome
+                    nome_clube10 = res1[9].nome
+                    voto_clube = res1[0].voto
+                    voto2_clube = res1[1].voto
+                    voto3_clube = res1[2].voto
+                    voto4_clube = res1[3].voto
+                    voto5_clube = res1[4].voto
+                    voto6_clube = res1[5].voto
+                    voto7_clube = res1[6].voto
+                    voto8_clube = res1[7].voto
+                    voto9_clube = res1[8].voto
+                    voto10_clube = res1[9].voto
                 }
                 );
             } else {

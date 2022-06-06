@@ -1,6 +1,17 @@
 create database projeto_pessoal;
 use projeto_pessoal;
 
+
+create table jogadores (
+id_jogador int primary key auto_increment,
+nome_jogador varchar (100)
+);
+
+create table clubes (
+id_clube int primary key auto_increment,
+nome_clube varchar (100)
+);
+
 create table usuarios (
 id_usuario int primary key auto_increment,
 nome_usuario varchar (100),
@@ -13,17 +24,6 @@ fk_clube int,
 foreign key (fk_clube)
 references clubes (id_clube)
 );
-
-create table jogadores (
-id_jogador int primary key auto_increment,
-nome_jogador varchar (100)
-);
-
-create table clubes (
-id_clube int primary key auto_increment,
-nome_clube varchar (100)
-);
-
 
 insert into jogadores values 
 (null, 'Neymar JR'),
