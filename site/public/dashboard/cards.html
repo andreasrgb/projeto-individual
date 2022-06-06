@@ -2,49 +2,38 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Tempo Real</title>
 
-    <link rel="stylesheet" href="../css/style.css">
+    <title>FutAnalytics</title>
+
+
+    <script src="./js/funcoes.js"></script>
+
+
+    <link rel="icon" href="../assets/imgs/favicon-32x32.png">
     <link rel="stylesheet" href="dashboards.css">
-
-    <script src="../js/funcoes.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
-<body onload="validarSessao(), grafico_jogador(), grafico_clube()">
+<body onload="grafico_jogador(), grafico_clube()">
 
     <div class="janela">
 
 
         <div class="header-left dash-header">
 
-            <h1>AcquaTec</h1>
+            <h1>FutAnalytics</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav">
-                <h3>Aquários</h3>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
             </div>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -52,65 +41,18 @@
             </div>
 
         </div>
+    </div>
 
-        <div class="dash">
-            <div class="regua">
-                <div class="item-regua perigo-frio">
-                    <h4>Perigo</h4>
-                    <h2>0°C</h2>
-                </div>
-                <div class="item-regua alerta-frio">
-                    <h4>Alerta</h4>
-                    <h2>0°C</h2>
-                </div>
-                <div class="item-regua ideal">
-                    <h4>Ideal</h4>
-                    <h2>0°C</h2>
-                </div>
-                <div class="item-regua alerta-quente">
-                    <h4>Alerta</h4>
-                    <h2>0°C</h2>
-                </div>
-                <div class="item-regua perigo-quente">
-                    <h4>Perigo</h4>
-                    <h2>0°C</h2>
-                </div>
-            </div>
+    <div id="graficoJogador" class="grafico_jogador">
+        <canvas id="myChart">
 
-            <div class="cards">
-                <div class="card">
-                    <h1>Aquário 1</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_1">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_1"></div>
-                </div>
-                <div class="card">
-                    <h1>Aquário 1</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_2">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_2"></div>
+        </canvas>
+    </div>
 
-                </div>
-                <div class="card">
-                    <h1>Aquário 1</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_3">-°C</p>
-                    </div>
-                    <div class="cor-alerta ideal" id="card_3"></div>
-                </div>
-                <div class="card">
-                    <h1>Aquário 1</h1>
-                    <div class="temperatura">
-                        <p id="temp_aquario_4">-°C</p>
-                    </div>
-                    <div class="cor-alerta" id="card_4"></div>
-                </div>
+    <div id="graficoClube" class="grafico_clube">
+        <canvas id="myChart2">
 
-            </div>
-
-        </div>
+        </canvas>
     </div>
 
 
@@ -169,6 +111,40 @@ var voto_clube8 = 0;
 var voto_clube9 = 0;
 var voto_clube10 = 0;
 
+const labels = [
+      'Neymar JR',
+      'Kylian Mbappe',
+      'Lionel Messi',
+      'Cristiano Ronaldo',
+      'Vini JR',
+      'Karim Benzema',
+      'Robert Lewandowski',
+      'Mohamed Salah',
+      'Sadio Mané',
+      'Erling Haaland'
+    ];
+  
+    const data1 = {
+      labels: labels,
+      datasets: [{
+        label: 'Jogadores',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      }]
+    };
+  
+    const config = {
+      type: 'bar',
+      data: data1,
+      options: {}
+    };
+
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
 function grafico_jogador() {
         fetch("/usuarios/grafico_jogador").then(function (res1) {
             if (res1.ok) {
@@ -176,15 +152,15 @@ function grafico_jogador() {
                 res1.json().then(function (res1) {
                     console.log("Dados recebidos: ", JSON.stringify(res1)) 
                     nome = res1[0].nome
-                    nome = res1[1].nome
-                    nome = res1[2].nome
-                    nome = res1[3].nome
-                    nome = res1[4].nome
-                    nome = res1[5].nome
-                    nome = res1[6].nome
-                    nome = res1[7].nome
-                    nome = res1[8].nome
-                    nome = res1[9].nome
+                    nome2 = res1[1].nome
+                    nome3 = res1[2].nome
+                    nome4 = res1[3].nome
+                    nome5 = res1[4].nome
+                    nome6 = res1[5].nome
+                    nome7 = res1[6].nome
+                    nome8 = res1[7].nome
+                    nome9 = res1[8].nome
+                    nome10 = res1[9].nome
                     voto = res1[0].voto
                     voto2 = res1[1].voto
                     voto3 = res1[2].voto
@@ -195,8 +171,22 @@ function grafico_jogador() {
                     voto8 = res1[7].voto
                     voto9 = res1[8].voto
                     voto10 = res1[9].voto
+
+                    data1.datasets[0].data[0] = voto
+                    data1.datasets[0].data[1] = voto2
+                    data1.datasets[0].data[2] = voto3
+                    data1.datasets[0].data[3] = voto4
+                    data1.datasets[0].data[4] = voto5
+                    data1.datasets[0].data[5] = voto6
+                    data1.datasets[0].data[6] = voto7
+                    data1.datasets[0].data[7] = voto8
+                    data1.datasets[0].data[8] = voto9
+                    data1.datasets[0].data[9] = voto10
                 }
                 );
+
+              
+
             } else {
                 throw ('Houve um erro ao pegar info!');
             }
@@ -211,26 +201,26 @@ function grafico_jogador() {
                 console.log(res1)
                 res1.json().then(function (res1) {
                     console.log("Dados recebidos: ", JSON.stringify(res1)) 
-                    nome_clube = res1[0].nome
-                    nome_clube2 = res1[1].nome
-                    nome_clube3 = res1[2].nome
-                    nome_clube4 = res1[3].nome
-                    nome_clube5 = res1[4].nome
-                    nome_clube6 = res1[5].nome
-                    nome_clube7 = res1[6].nome
-                    nome_clube8 = res1[7].nome
-                    nome_clube9 = res1[8].nome
-                    nome_clube10 = res1[9].nome
-                    voto_clube = res1[0].voto
-                    voto2_clube = res1[1].voto
-                    voto3_clube = res1[2].voto
-                    voto4_clube = res1[3].voto
-                    voto5_clube = res1[4].voto
-                    voto6_clube = res1[5].voto
-                    voto7_clube = res1[6].voto
-                    voto8_clube = res1[7].voto
-                    voto9_clube = res1[8].voto
-                    voto10_clube = res1[9].voto
+                    nome_clube = res1[0].nome_clube
+                    nome_clube2 = res1[1].nome_clube
+                    nome_clube3 = res1[2].nome_clube
+                    nome_clube4 = res1[3].nome_clube
+                    nome_clube5 = res1[4].nome_clube
+                    nome_clube6 = res1[5].nome_clube
+                    nome_clube7 = res1[6].nome_clube
+                    nome_clube8 = res1[7].nome_clube
+                    nome_clube9 = res1[8].nome_clube
+                    nome_clube10 = res1[9].nome_clube
+                    voto_clube = res1[0].voto_clube
+                    voto2_clube = res1[1].voto_clube
+                    voto3_clube = res1[2].voto_clube
+                    voto4_clube = res1[3].voto_clube
+                    voto5_clube = res1[4].voto_clube
+                    voto6_clube = res1[5].voto_clube
+                    voto7_clube = res1[6].voto_clube
+                    voto8_clube = res1[7].voto_clube
+                    voto9_clube = res1[8].voto_clube
+                    voto10_clube = res1[9].voto_clube
                 }
                 );
             } else {
@@ -240,6 +230,8 @@ function grafico_jogador() {
             console.error(res1);
         });
     }
+
+
 
 </script>
 

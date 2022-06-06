@@ -25,6 +25,17 @@ foreign key (fk_clube)
 references clubes (id_clube)
 );
 
+insert into usuarios values
+(null, 'Carlos', 'carlos@gmail.com', '123456', 1, '2'),
+(null, 'Mauricio', 'mauricio@gmail.com', '123456', 2, '3'),
+(null, 'Jefferson', 'jefferson@gmail.com', '123456', 3, '4'),
+(null, 'Paulo', 'paulo@gmail.com', '123456', 4, '5'),
+(null, 'Matheus', 'matheus@gmail.com', '123456', 6, '6'),
+(null, 'Juninho', 'Junior@gmail.com', '123456', 7, '7'),
+(null, 'Pedro', 'pedro@gmail.com', '123456', 8, '8'),
+(null, 'Lucas', 'lucas@gmail.com', '123456', 9, '9'),
+(null, 'João', 'joao@gmail.com', '123456', 10, '10');
+
 insert into jogadores values 
 (null, 'Neymar JR'),
 (null, 'Kylian Mbappe'),
