@@ -1,8 +1,10 @@
-/* pagina mural */
-
-*,
-body {
-  font-family: "Exo 2", sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  font-family: barlow;
+  font-size: 1.2rem;
 }
 
 .grafico {
