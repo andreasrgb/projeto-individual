@@ -9,7 +9,7 @@
     <title>FutAnalytics</title>
 
 
-    <script src="./js/funcoes.js"></script>
+    <script src="../js/funcoes.js"></script>
 
 
     <link rel="icon" href="../assets/imgs/favicon-32x32.png">
@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="grafico_jogador(), grafico_clube()">
+<body onload="validarSessao(), grafico_jogador(), grafico_clube()">
 
     <div class="janela">
 
@@ -44,13 +44,13 @@
     </div>
 
     <div id="graficoJogador" class="grafico_jogador">
-        <canvas id="myChart">
+        <canvas class="grafico" id="myChart">
 
         </canvas>
     </div>
 
-    <div id="graficoClube" class="grafico_clube">
-        <canvas id="myChart2">
+    <div id="graficoClube" class="grafico_jogador">
+        <canvas class="grafico" id="myChart2">
 
         </canvas>
     </div>
@@ -145,6 +145,40 @@ const labels = [
       config
     );
 
+    const labels2 = [
+      'Real Madrid',
+      'Manchester City',
+      'Manchester United',
+      'Chelsea',
+      'Bayern de Munique',
+      'Liverpool',
+      'Barcelona',
+      'Paris Saint-Germain',
+      'Atlético de Madrid',
+      'Juventus'
+    ];
+  
+    const data2 = {
+      labels: labels2,
+      datasets: [{
+        label: 'Jogadores',
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      }]
+    };
+  
+    const config2 = {
+      type: 'bar',
+      data: data2,
+      options: {}
+    };
+
+    const myChart2 = new Chart(
+      document.getElementById('myChart2'),
+      config2
+    );
+
 function grafico_jogador() {
         fetch("/usuarios/grafico_jogador").then(function (res1) {
             if (res1.ok) {
@@ -201,16 +235,16 @@ function grafico_jogador() {
                 console.log(res1)
                 res1.json().then(function (res1) {
                     console.log("Dados recebidos: ", JSON.stringify(res1)) 
-                    nome_clube = res1[0].nome_clube
-                    nome_clube2 = res1[1].nome_clube
-                    nome_clube3 = res1[2].nome_clube
-                    nome_clube4 = res1[3].nome_clube
-                    nome_clube5 = res1[4].nome_clube
-                    nome_clube6 = res1[5].nome_clube
-                    nome_clube7 = res1[6].nome_clube
-                    nome_clube8 = res1[7].nome_clube
-                    nome_clube9 = res1[8].nome_clube
-                    nome_clube10 = res1[9].nome_clube
+                    nome1_clube = res1[0].nome_clube
+                    nome2_clube = res1[1].nome_clube
+                    nome3_clube = res1[2].nome_clube
+                    nome4_clube = res1[3].nome_clube
+                    nome5_clube = res1[4].nome_clube
+                    nome6_clube = res1[5].nome_clube
+                    nome7_clube = res1[6].nome_clube
+                    nome8_clube = res1[7].nome_clube
+                    nome9_clube = res1[8].nome_clube
+                    nome10_clube = res1[9].nome_clube
                     voto_clube = res1[0].voto_clube
                     voto2_clube = res1[1].voto_clube
                     voto3_clube = res1[2].voto_clube
@@ -221,6 +255,17 @@ function grafico_jogador() {
                     voto8_clube = res1[7].voto_clube
                     voto9_clube = res1[8].voto_clube
                     voto10_clube = res1[9].voto_clube
+
+                    data2.datasets[0].data[0] = voto_clube
+                    data2.datasets[0].data[1] = voto2_clube
+                    data2.datasets[0].data[2] = voto3_clube
+                    data2.datasets[0].data[3] = voto4_clube
+                    data2.datasets[0].data[4] = voto5_clube
+                    data2.datasets[0].data[5] = voto6_clube
+                    data2.datasets[0].data[6] = voto7_clube
+                    data2.datasets[0].data[7] = voto8_clube
+                    data2.datasets[0].data[8] = voto9_clube
+                    data2.datasets[0].data[9] = voto10_clube
                 }
                 );
             } else {
