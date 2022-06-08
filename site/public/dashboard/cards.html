@@ -25,10 +25,9 @@
 
 <body onload="validarSessao(), grafico_jogador(), grafico_clube()">
 
-    <div class="janela">
+    <div class="container">
 
-
-        <div class="header-left dash-header">
+        <div class="header">
 
             <h1>FutAnalytics</h1>
 
@@ -36,12 +35,19 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-logout" onclick="limparSessao()">
+            <div id="div_jogador">
+                <h3>Jogador escolhido:</h3>
+            </div>
+
+            <div id="div_clube">
+                <h3>Clube escolhido:</h3>
+            </div>
+
+            <div class="btn_sair" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
 
         </div>
-    </div>
 
     <div id="graficoJogador" class="grafico_jogador">
         <canvas class="grafico" id="myChart">
@@ -49,13 +55,12 @@
         </canvas>
     </div>
 
-    <div id="graficoClube" class="grafico_jogador">
+    <div id="graficoClube" class="grafico_clube">
         <canvas class="grafico" id="myChart2">
 
         </canvas>
+        </div>
     </div>
-
-
 </body>
 
 <script>
@@ -127,8 +132,8 @@ const labels = [
     const data1 = {
       labels: labels,
       datasets: [{
-        label: 'Jogadores',
-        backgroundColor: 'rgb(255, 99, 132)',
+        label: 'Gráfico dos jogadores',
+        backgroundColor: 'rgb(192, 192, 192)',
         borderColor: 'rgb(255, 99, 132)',
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       }]
@@ -163,8 +168,8 @@ const labels = [
     const data2 = {
       labels: labels2,
       datasets: [{
-        label: 'Clubes',
-        backgroundColor: 'rgb(255, 99, 132)',
+        label: 'Gráfico dos clubes',
+        backgroundColor: 'rgb(255, 0, 0)',
         borderColor: 'rgb(255, 99, 132)',
         data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       }]
@@ -218,6 +223,8 @@ function grafico_jogador() {
                     data1.datasets[0].data[7] = voto8
                     data1.datasets[0].data[8] = voto9
                     data1.datasets[0].data[9] = voto10
+
+                    div_jogador.innerHTML += sessionStorage.JOGADOR
                 }
                 );
 
@@ -268,6 +275,8 @@ function grafico_jogador() {
                     data2.datasets[0].data[7] = voto8_clube
                     data2.datasets[0].data[8] = voto9_clube
                     data2.datasets[0].data[9] = voto10_clube
+
+                    div_clube.innerHTML += sessionStorage.CLUBE
                 }
                 );
             } else {

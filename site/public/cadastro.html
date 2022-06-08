@@ -22,12 +22,7 @@
 
 <body>
 
-    <div class="banner ">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-        </div>
+    <div class="banner">
 
         <div class="img_cadastro">
             <img src="assets/imgs/REAL MADRID.jpg">
@@ -45,14 +40,14 @@
                     <input id="email_input" type="text" placeholder="Digite seu email" required> <br>
 
                     <label>Senha:</label>
-                    <input id="senha_input" type="password" placeholder="Digite sua senha" required> <br>
+                    <input id="senha_input" type="password" placeholder="Mínimo de 6 dígitos" required> <br>
 
                     <label>Confirmar senha:</label>
                     <input id="confirmacao_senha_input" type="password" placeholder="Confirme sua senha" required> <br>
                     
                     <label>Jogador preferido:</label> <br>
                     <select id="select_jogador" required>
-                        <option value=""></option>
+                        <option value="0">Escolha um jogador</option>
                         <option value="1">Neymar JR</option>
                         <option value="2">Kylian Mbappe</option>
                         <option value="3">Lionel Messi</option>
@@ -67,7 +62,7 @@
 
                     <label>Clube preferido:</label> <br>
                     <select id="select_clube" required>
-                        <option value=""></option>
+                        <option value="0">Escolha um clube</option>
                         <option value="1">Real Madrid</option>
                         <option value="2">Manchester City</option>
                         <option value="3">Manchester United</option>
@@ -83,14 +78,19 @@
 
                     <button type="button" class="btn" onclick="cadastrar()">Cadastrar</button>
 
+                    <a href="login.html"><img src="assets/imgs/voltar.png" style="height: 40px; width: 40px; float: left;"></a>
+
+                </div>
+
+                <div class="alerta_erro">
+                    <div class="card_erro" id="cardErro">
+                        <div id="mensagem_erro"></div>
+                    </div>
                 </div>
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/gif.gif" id="loading-gif">
                 </div>
 
-                <div id="div_erros_login">
-
-                </div>
             </div>
         </div>
     </div>
@@ -103,8 +103,6 @@
     function cadastrar() {
         aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
         var nomeVar = nome_input.value;
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
@@ -112,28 +110,54 @@
         var jogadoresVar = Number(select_jogador.value);
         var clubesVar = Number(select_clube.value);
 
-        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" 
-        || jogadoresVar == "" || clubesVar == "") {
-
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "" || jogadoresVar == "" || clubesVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Preencha todos os campos ";
+            setInterval(sumirMensagem, 4000)
+            return false;
 
-            finalizarAguardar();
+        } else if (nomeVar.length < 2){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Nome inválido! ";
+            setInterval(sumirMensagem, 4000)
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
+        
+        else if (emailVar.indexOf("@") < 2|| emailVar.indexOf(".com") < 3 || emailVar.length < 12) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Ops, e-mail inválido! Verifique e tente novamente.";
+            setInterval(sumirMensagem, 4000)
+            return false;
         }
 
-        // Enviando o valor da nova input
+        else if (senhaVar.length < 6) {
+        cardErro.style.display = "block"
+        mensagem_erro.innerHTML = "Digite uma senha com mais de 6 dígitos";
+        setInterval(sumirMensagem, 4000)
+        return false;
+        }
+
+        else if (senhaVar != confirmacaoSenhaVar) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "As senhas inseridas devem ser iguais! ";
+            setInterval(sumirMensagem, 4000)
+            return false;
+        }
+        
+        else if (jogadoresVar == 0 || clubesVar == 0){
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Selecione um valor válido! ";
+            setInterval(sumirMensagem, 4000)
+            return false;
+        }
+
         fetch("/usuarios/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
+
                 nomeServer: nomeVar,
                 emailServer: emailVar,
                 senhaServer: senhaVar,
@@ -145,9 +169,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                cardErro.style.display = "block";
-
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                div_aguardar.style.display = "block";
 
                 setTimeout(() => {
                     window.location = "login.html";
@@ -164,10 +186,10 @@
         });
 
         return false;
-    }
+    
 
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
-
+    }
 </script>

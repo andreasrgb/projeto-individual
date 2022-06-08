@@ -7,11 +7,60 @@
   font-size: 1.2rem;
 }
 
-.grafico {
-  height: 40%;
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.header {
+  display: flex;
+  width: 20vw;
+  height: 100vh;
+  float: left;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-right: 5px solid #008000;
+  color: #120a8f;
+}
+
+.btn_sair {
+  height: 6vh;
+  border: none;
+  border-radius: 15px;
+  margin: 20px;
+  margin-left: 15px;
+  padding: 15px;
+  cursor: pointer;
+  background-color: #120a8f;
+  color: white;
+  text-align: center;
+  align-items: center;
+}
+
+.graficos{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 70vw;
+  padding: 30px;
 }
 
 .grafico_jogador {
-  height: 30%;
-  width: 65%;
+  margin-right: 200px;
+  float: right;
+  height: 25vh;
+  width: 55vw;
+}
+
+.grafico_clube {
+  margin-top: 250px;
+  margin-right: 200px;
+  float: right;
+  height: 25vh;
+  width: 55vw;
+}
+
+.grafico {
+  height: 100vh;
 }

@@ -31,17 +31,13 @@
                     <input type="password" id="senha_input" placeholder="Digite sua senha"> <br>
                     <button type="button" onclick="entrar()">Entrar</button>
                     <p>Ainda não é cadastrado? <a href="cadastro.html"> clique aqui </a> </p>
+                    <a href="index.html"><img src="assets/imgs/voltar.png" style="height: 40px; width: 40px;"></a>
 
                     <div id="msg_erro" class="msg_erro">
                         <div class="letras_erro" id="mensagem_erro">
 
                         </div>
-                    </div>
-
-                    <div id="div_aguardar">
-
-                    </div>
-                
+                    </div>    
                 </form>
 
                 
@@ -69,10 +65,22 @@
             msg_erro.style.display = "block"
             mensagem_erro.innerHTML = "Preencha todos os campos";
             finalizarAguardar();
+            setInterval(sumirMensagem, 4000)
             return false;
         }
-        else {
-            setInterval(sumirMensagem, 5000)
+        if (emailVar.indexOf("@") == -1 || emailVar.indexOf(".com") == -1) {
+            msg_erro.style.display = "block"
+            mensagem_erro.innerHTML = "Email inválido";
+            
+            setInterval(sumirMensagem, 4000)
+            return false;
+
+        } else if (senhaVar.length < 6) {
+            msg_erro.style.display = "block"
+            mensagem_erro.innerHTML = "Senha incorreta";
+
+            setInterval(sumirMensagem, 4000)
+            return false;
         }
 
         console.log("FORM LOGIN: ", emailVar);
@@ -100,6 +108,8 @@
                     sessionStorage.EMAIL_USUARIO = json.email_usuario;
                     sessionStorage.NOME_USUARIO = json.nome_usuario;
                     sessionStorage.ID_USUARIO = json.id_usuario;
+                    sessionStorage.JOGADOR = json.nome_jogador;
+                    sessionStorage.CLUBE = json.nome_clube;
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
